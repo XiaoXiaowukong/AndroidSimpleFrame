@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SmipleAndroidFrame</string>
+    <string name="net_error">网络错误</string>
+    <string name="data_error">数据错误</string>
+    <string name="time_out">网络延时</string>
+    <string name="relaod">点击重试</string>
+</resources>
