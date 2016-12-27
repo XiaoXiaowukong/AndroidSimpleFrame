@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -28,7 +29,6 @@ import com.neo.neo.smipleandroidframe.R;
 import com.neo.neo.smipleandroidframe.application.SimpleFrameApplication;
 import com.neo.neo.smipleandroidframe.views.LoadingDialog;
 import com.neo.neo.smipleandroidframe.views.MessageDialog;
-
 
 import java.net.URISyntaxException;
 import java.util.List;
@@ -331,10 +331,10 @@ public abstract class BaseActivity extends LifecycleActivity implements BaseCont
         public void afterTextChanged(Editable s) {
             if (s.toString().trim().length() == 11) {
                 tvLoadGetcode.setClickable(true);
-                tvLoadGetcode.setTextColor(getResources().getColor(R.color.main));
+                tvLoadGetcode.setTextColor(ContextCompat.getColor(BaseActivity.this, R.color.main));
             } else {
                 tvLoadGetcode.setClickable(false);
-                tvLoadGetcode.setTextColor(getResources().getColor(R.color.gray));
+                tvLoadGetcode.setTextColor(ContextCompat.getColor(BaseActivity.this, R.color.gray));
             }
             if (etLoadCode.getText().toString().length() == 4 && etloadPhonenumber.getText().toString().trim().length() == 11) {
                 btStartUse.setEnabled(true);
@@ -535,15 +535,7 @@ public abstract class BaseActivity extends LifecycleActivity implements BaseCont
      * @param clickOk 确定按钮的点击监听器
      */
     protected void showDialog(String title, String msg, DialogInterface.OnClickListener clickOk) {
-
-        MessageDialog dialog = new MessageDialog(this);
-        dialog.setTitle(title);
-        dialog.setBtnYes("确定");
-        dialog.setBtnNo("取消");
-        dialog.setMessage(msg);
-        dialog.setOkListener(clickOk);
-        dialog.setCancelListener(null);
-        dialog.show();
+        showDialog(title, msg, clickOk, null, null);
     }
 
 
@@ -630,12 +622,7 @@ public abstract class BaseActivity extends LifecycleActivity implements BaseCont
      * @param msg
      */
     protected void showOkDialog(String title, String msg) {
-        MessageDialog dialog = new MessageDialog(this);
-        dialog.setTitle(title);
-        dialog.setBtnYes("确定");
-        dialog.setMessage(msg);
-        dialog.setOkListener(null);
-        dialog.show();
+        showOkDialog(title, msg, null);
     }
 
 
@@ -647,13 +634,7 @@ public abstract class BaseActivity extends LifecycleActivity implements BaseCont
      * @param clickOk
      */
     protected void showOkDialog(String title, String msg, DialogInterface.OnClickListener clickOk) {
-
-        MessageDialog dialog = new MessageDialog(this);
-        dialog.setTitle(title);
-        dialog.setBtnYes("确定");
-        dialog.setMessage(msg);
-        dialog.setOkListener(clickOk);
-        dialog.show();
+        showOkDialog(title, msg, false, clickOk);
     }
 
     /***
